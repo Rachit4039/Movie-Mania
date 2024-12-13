@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie-Mania</title>
+    <link rel="stylesheet" href="css/explore.css">
+    <link rel="stylesheet" href="css/home.css">
+
+    <script src="javascripts/home.js"></script>
+    <script  src="javascripts/explore.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">Movie-Mania</div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/explore-movie">Book your Movie</a></li>
+                <li><a href="/help">Help</a></li>
+                <li><a href="/offer">Offers</a></li>
+              <%if(user.userType=='admin'){%>
+                    <li class="addmovie"><a href="/post-movie">Add Movies</a></li>
+                    <%}%>
+              
+            </ul>
+        </nav>
+      
+        
+        <div class="search-bar">
+            <input type="text" placeholder="Search events, destinations...">
+        </div>
+        <nav>
+     
+        <div class="dropdown">
+            <button class="dropbtn">Profile &#9662;</button>
+            <div class="dropdown-content">
+                <%if(user.userType=='admin'){%>
+                    <a href="/your-movies">Your Movies</a>
+                    <%}%>
+               
+            </div>
+        </div>
+    </nav>
+    </header>
+
+<!-- slideshoe section -->
+
+
+
+
+
+
+
+    <!-- Featured Events Section -->
+    
+    <section class="featured-events">
+        <h2>Trending New Movies</h2>
+    
+        <!-- Slider Section -->
+        <div class="slider">
+            <% if (newEvents && newEvents.length > 0) { %>
+                <div class="slider-container">
+                    <% newEvents.forEach(event => { %>
+                        <div class="slider-item">
+                            <img src="<%= event.posterUrl %>" alt="<%= event.title %>">
+                            <div class="event-details">
+                                <h3><%= event.title %></h3>
+                                <p>Release Date: <%= new Date(event.releaseDate).toLocaleDateString('en-GB', {
+                                    weekday: 'short',
+                                    year: 'numeric',
+                                    month: 'short',
+                                    day: '2-digit'
+                                }) %></p>
+                                <p>Tags: <%= event.tags %></p>
+                              <!-- Inside Slider Section and Grid Section -->
+<button class="btn btn-primary book-now-btn" onclick="bookNow('<%= event._id %>')">Book Now</button>
+
+                                <!-- Scrollable section for additional details -->
+                                <div class="event-more-details">
+                                    <p><strong>Description:</strong> <%= event.description %></p>
+                                <p><strong>Directed By:</strong> <%= event.director %></p>
+                                <p><strong>Cast By:</strong> <%= event.cast %></p>
+                                <p><strong>Trailer:</strong> <a href="<%= event.trailerUrl %>" target="_blank">Watch here</a></p>
+                                <p><strong>Runtime:</strong> <%= event.runtime %></p>
+                                <p><strong>language:</strong> <%= event.language %></p>
+                                    <!-- Add more details as needed -->
+                                </div>
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
+            <% } %>
+        </div>
+    
+        <!-- Grid Section -->
+        <h2>BlockBuster Movies</h2>
+        <div class="event-grid">
+           
+            <% if (events && events.length > 0) { %>
+                <% events.forEach(event => { %>
+                    <div class="event-item">
+                        <img src="<%= event.posterUrl %>" alt="<%= event.title %>">
+                        <div class="event-details">
+                            <h3><%= event.title %></h3>
+                            <p>Release Date: <%= new Date(event.releaseDate).toLocaleDateString('en-GB', {
+                                weekday: 'short',
+                                year: 'numeric',
+                                month: 'short',
+                                day: '2-digit'
+                            }) %></p>
+                            <p>Tags: <%= event.tags %></p>
+                            <button class="btn btn-primary book-now-btn" onclick="bookNow('<%= event._id %>')">Book Now</button>
+                            <!-- Scrollable section for additional details -->
+                            <div class="event-more-details">
+                                <p><strong>Description:</strong> <%= event.description %></p>
+                                <p><strong>Directed By:</strong> <%= event.director %></p>
+                                <p><strong>Cast By:</strong> <%= event.cast %></p>
+                                <p><strong>Trailer:</strong> <a href="<%= event.trailerUrl %>" target="_blank">Watch here</a></p>
+                                <p><strong>Runtime:</strong> <%= event.runtime %></p>
+                                <p><strong>language:</strong> <%= event.language %></p>
+                             
+
+                                <!-- Add more details as needed -->
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } %>
+        </div>
+    </section>
+    
+    
+
+    <!-- Customer Testimonials Section -->
+    <section class="testimonials">
+        <h2>What Our Customers Say</h2>
+        <div class="testimonial-item">
+            <p>"Great service and easy booking process!"</p>
+            <h4>- Ranveer Singh</h4>
+        </div>
+        <!-- Add more testimonials as needed -->
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-content">
+            <div class="company-info">
+                <p>&copy; 2024 TicketBooking. All rights reserved.</p>
+                <p>Contact us: info@ticketbooking.com</p>
+                <p>Follow us:</p>
+                <!-- Social media links -->
+                <a href="#">Facebook</a> | <a href="#">Twitter</a> | <a href="#">Instagram</a>
+            </div>
+            <div class="footer-links">
+                <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+    <!-- Hero Section -->
+  
+   
+</body>
+</html>

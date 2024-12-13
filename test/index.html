@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>City Selection Pop-up</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* Custom styles */
+    .city-btn {
+      background-color: #f8f9fa;
+      color: #ff4a57;
+      border: none;
+      margin: 10px 0;
+    }
+    .city-btn:hover {
+      background-color: #ff4a57;
+      color: #fff;
+    }
+    .city-icon {
+      width: 50px;
+      height: 50px;
+      display: block;
+      margin: auto;
+    }
+    .city-name {
+      text-align: center;
+      margin-top: 5px;
+      font-weight: 500;
+    }
+    .popular-cities {
+      display: flex;
+      overflow-x: auto;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+    }
+    .popular-cities .city {
+      flex: 0 0 90px;
+      margin: 0 10px;
+      cursor: pointer;
+    }
+    .city {
+      text-align: center;
+    }
+    .modal-body {
+      max-height: 400px;
+      overflow-y: auto;
+    }
+    .search-input {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header with Location -->
+
+
+    <h4 id="selectedCity" class="city-select-btn" data-bs-toggle="modal" data-bs-target="#locationModal">
+        Select City <i class="fa fa-chevron-down"></i>
+    </h4>
+    
+
+
+
+<!-- Modal Structure for City Selection -->
+<div class="modal fade" id="locationModal" tabindex="-1" aria-labelledby="locationModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="locationModalLabel">Select Your City</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Search Bar for City -->
+        <input type="text" class="form-control search-input" placeholder="Search for your city" id="citySearchInput">
+
+        <!-- Popular Cities Section (Horizontal Scrollable) -->
+        <h5 class="mb-3">Popular Cities</h5>
+        <div class="popular-cities" id="popularCities">
+          <!-- Example Cities with Icons -->
+          <div class="city" data-city="Mumbai" onclick="updateCity('Mumbai')">
+            <img src="https://via.placeholder.com/50" alt="Mumbai" class="city-icon">
+            <span class="city-name">Mumbai</span>
+          </div>
+          <div class="city" data-city="Delhi-NCR" onclick="updateCity('Delhi-NCR')">
+            <img src="https://via.placeholder.com/50" alt="Delhi-NCR" class="city-icon">
+            <span class="city-name">Delhi-NCR</span>
+          </div>
+          <div class="city" data-city="Bengaluru" onclick="updateCity('Bengaluru')">
+            <img src="https://via.placeholder.com/50" alt="Bengaluru" class="city-icon">
+            <span class="city-name">Bengaluru</span>
+          </div>
+          <div class="city" data-city="Hyderabad" onclick="updateCity('Hyderabad')">
+            <img src="https://via.placeholder.com/50" alt="Hyderabad" class="city-icon">
+            <span class="city-name">Hyderabad</span>
+          </div>
+          <div class="city" data-city="Chandigarh" onclick="updateCity('Chandigarh')">
+            <img src="https://via.placeholder.com/50" alt="Chandigarh" class="city-icon">
+            <span class="city-name">Chandigarh</span>
+          </div>
+          <!-- Add more cities as needed -->
+        </div>
+
+        <!-- Option to Detect Location -->
+        <button class="btn btn-outline-danger mb-4" id="detectLocation">Detect My Location</button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  // Function to update the city in the header
+  function updateCity(cityName) {
+    document.getElementById('selectedCity').innerText = cityName;
+
+    // Properly trigger Bootstrap's native closing functionality
+    var modalEl = document.getElementById('locationModal');
+    var modal = bootstrap.Modal.getInstance(modalEl); 
+    modal.hide(); // This properly hides the modal and allows other close buttons to work
+  }
+
+  // Detect location functionality (this can be expanded with geolocation APIs)
+  document.getElementById('detectLocation').addEventListener('click', function() {
+    // Mock detection for demo purposes
+    updateCity('Detected City');
+  });
+
+  // Real-time city search filtering
+  document.getElementById('citySearchInput').addEventListener('input', function() {
+    var filter = this.value.toLowerCase();
+    var cities = document.querySelectorAll('.popular-cities .city');
+    
+    cities.forEach(function(city) {
+      var cityName = city.getAttribute('data-city').toLowerCase();
+      if (cityName.includes(filter)) {
+        city.style.display = '';
+      } else {
+        city.style.display = 'none';
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

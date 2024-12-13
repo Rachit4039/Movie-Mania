@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Booking System</title>
+    <link rel="stylesheet" href="css/home.css">
+    <script src="javascripts/home.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">Movie-Mania</div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/explore-movie">Book your Movie</a></li>
+                <li><a href="/help">Help</a></li>
+                <li><a href="/offer">Offers</a></li>
+
+    
+
+            </ul>
+        </nav>
+      
+        
+        <div class="search-bar">
+            <input type="text" placeholder="Search events, destinations...">
+        </div>
+        <nav>
+     
+        <div class="dropdown">
+            <button class="dropbtn">Profile &#9662;</button>
+            <div class="dropdown-content">
+                <%if(user.userType=='admin'){%>
+                    <a href="/your-movies">Your Movies</a>
+                    <%}%>
+                <a href="#">Settings</a>
+                <a href="/booked_movie">Booked Movies</a>
+                <a href="#">Refund</a>
+                <%if(user.userType=='admin') {%>
+                  <a href="/help-query" alt="More">Help Query</a>
+
+                  <%}%>
+                <a href="/logout">Logout</a>
+            </div>
+        </div>
+    </nav>
+    </header>
+    <nav class="navbar navbar-expand-lg custom-navbar">
+        <div class="container-fluid">
+        
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            
+            <!-- Right Aligned Navbar Items -->
+            <ul class="navbar-nav custom-nav-right">
+              
+             
+              <!-- <li class="nav-item custom-nav-item">
+                <a class="nav-link" href="/offer">Offers</a>
+              </li> -->
+         
+              <li class="nav-item custom-nav-item">
+                <%if(user.userType=='admin') {%>
+                  <a  class="nav-link" href="/put-coupon" alt="More">Add coupon</a>
+
+                  <%}%>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      
+<!-- slideshoe section -->
+
+
+<!-- select city -->
+<!-- <div class="modal fade" id="locationModal" tabindex="-1" aria-labelledby="locationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="locationModalLabel">Select Your City</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Search Bar for City -->
+          <!-- <input type="text" class="form-control search-input" placeholder="Search for your city" id="citySearchInput"> -->
+  
+          <!-- Popular Cities Section (Horizontal Scrollable) -->
+          <!-- <h5 class="mb-3">Popular Cities</h5>
+          <div class="popular-cities" id="popularCities">
+            <!-- Example Cities with Icons -->
+            <!-- <div class="city" data-city="Mumbai" onclick="updateCity('Mumbai')">
+              <img src="https://in.bmscdn.com/m6/images/common-modules/regions/mumbai.png" alt="Mumbai" class="city-icon">
+              <span class="city-name">Mumbai</span>
+            </div>
+            <div class="city" data-city="Delhi-NCR" onclick="updateCity('Delhi-NCR')">
+              <img src="https://in.bmscdn.com/m6/images/common-modules/regions/ncr.png" alt="Delhi-NCR" class="city-icon">
+              <span class="city-name">Delhi-NCR</span>
+            </div>
+            <div class="city" data-city="Bengaluru" onclick="updateCity('Bengaluru')">
+              <img src="https://in.bmscdn.com/m6/images/common-modules/regions/bang.png" alt="Bengaluru" class="city-icon">
+              <span class="city-name">Bengaluru</span>
+            </div>
+            <div class="city" data-city="Hyderabad" onclick="updateCity('Hyderabad')">
+              <img src="https://in.bmscdn.com/m6/images/common-modules/regions/hyd.png" alt="Hyderabad" class="city-icon">
+              <span class="city-name">Hyderabad</span>
+            </div>
+            <div class="city" data-city="Chandigarh" onclick="updateCity('Chandigarh')">
+              <img src="https://in.bmscdn.com/m6/images/common-modules/regions/chd.png" alt="Chandigarh" class="city-icon">
+              <span class="city-name">Chandigarh</span>
+            </div> --> 
+            <!-- Add more cities as needed -->
+          <!-- </div> -->
+  
+          <!-- Option to Detect Location -->
+          <!-- <button class="btn btn-outline-danger mb-4" id="detectLocation">Detect My Location</button> -->
+        <!-- </div> -->
+        <!-- <div class="modal-footer"> -->
+          <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+        <!-- </div>
+      </div>
+    </div>
+  </div>  -->
+
+  <img class="mySlides" src="https://cdn.dribbble.com/users/1362969/screenshots/14815337/media/1d28e79b3e943513d9f26bafa3201523.gif">
+  <!-- <img class="mySlides" src="https://originserver-static1-uat.pvrcinemas.com/pvrcms/movie_v/12540_Ts4TJG2x.jpg" style="width:100%">
+  <img class="mySlides" src="img_chicago.jpg" style="width:100%"> -->
+
+    
+    <div style="text-align:center">
+      <span class="dot" onclick="currentSlide(1)"></span> 
+      <span class="dot" onclick="currentSlide(2)"></span> 
+      <span class="dot" onclick="currentSlide(3)"></span> 
+    </div>
+
+
+
+
+    <!-- Featured Events Section -->
+    <section class="featured-events">
+        <h2>Featured Events</h2>
+        <div class="event-grid">
+            <!-- Example event item -->
+            <% newEvents.forEach(function(event) { %>
+              <div class="event-item">
+                <img src="<%= event.posterUrl %>" alt="<%= event.title %>">
+                <div class="event-details">
+                  <h3><%= event.title %></h3>
+                  <p>Date: <%= event.releaseDate.toDateString() %></p>
+                  <p>Director: <%= event.director %></p>
+                  <p>Cast: <%= event.cast.join(', ') %></p>
+                  <p>Genre: <%= event.genre.join(', ') %></p>
+                  <p>Runtime: <%= event.runtime %> minutes</p>
+                  <!-- <button onclick="bookNow()">Book Now</button> -->
+                </div>
+              </div>
+            <% }); %>
+            
+            <!-- Add more event items as needed -->
+        </div>
+    </section>
+<div class="imgfix">
+<div class="custom-premiere-container">
+    <div class="container">
+      <h2 class="text-center">Premieres</h2>
+      <p class="text-center">Brand new releases every Friday</p>
+      <div class="custom-row">
+        <!-- Card 1 -->
+        <div class="custom-col">
+          <a href="#" class="text-decoration-none">
+            <div class="custom-card position-relative">
+              <span class="custom-premiere-badge">PREMIERE</span>
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLmGCSVNoLpsESkc8xgaTuZbzzYHrZ6RBl_Q&s" class="card-img-top" alt="Movie 1">
+              <div class="custom-card-body">
+                <h5 class="custom-card-title">Trap (Preview)</h5>
+                <p class="custom-card-text">English</p>
+              </div>
+            </div>
+          </a>
+        </div>
+  
+        <!-- Card 2 -->
+        <div class="custom-col">
+          <a href="#" class="text-decoration-none">
+            <div class="custom-card position-relative">
+              <span class="custom-premiere-badge">PREMIERE</span>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Yllastunturi_Gondola_Lifts_20090301.JPG/220px-Yllastunturi_Gondola_Lifts_20090301.JPG" class="card-img-top" alt="Movie 2">
+              <div class="custom-card-body">
+                <h5 class="custom-card-title">Gondola</h5>
+                <p class="custom-card-text">Silent Movie</p>
+              </div>
+            </div>
+          </a>
+        </div>
+  
+        <!-- Card 3 -->
+        <div class="custom-col">
+          <a href="#" class="text-decoration-none">
+            <div class="custom-card position-relative">
+              <span class="custom-premiere-badge">PREMIERE</span>
+              <img src="https://m.media-amazon.com/images/M/MV5BMzJiN2UyZjgtMjQ3MS00MDhhLTg5ZDItZmVjMTU3MTcwNzE4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" class="card-img-top" alt="Movie 3">
+              <div class="custom-card-body">
+                <h5 class="custom-card-title">Trap (2024)</h5>
+                <p class="custom-card-text">English</p>
+              </div>
+            </div>
+          </a>
+        </div>
+  
+        <!-- Card 4 -->
+        <div class="custom-col">
+          <a href="#" class="text-decoration-none">
+            <div class="custom-card position-relative">
+              <span class="custom-premiere-badge">PREMIERE</span>
+              <img src="https://upload.wikimedia.org/wikipedia/en/4/4b/Jolly_LLB_2_first_look.jpg" class="card-img-top" alt="Movie 4">
+              <div class="custom-card-body">
+                <h5 class="custom-card-title">Jolly LLB 2</h5>
+                <p class="custom-card-text">Hindi</p>
+              </div>
+            </div>
+          </a>
+        </div>
+  
+        <!-- Card 5 -->
+        <div class="custom-col">
+          <a href="#" class="text-decoration-none">
+            <div class="custom-card position-relative">
+              <span class="custom-premiere-badge">PREMIERE</span>
+              <img src="https://m.media-amazon.com/images/I/716aujjEIEL._AC_UF1000,1000_QL80_.jpg" class="card-img-top" alt="Movie 5">
+              <div class="custom-card-body">
+                <h5 class="custom-card-title">Jurassic World Trilogy</h5>
+                <p class="custom-card-text">English</p>
+              </div>
+            </div>
+          </a>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+</div>
+      
+      <!-- Bootstrap JS -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+      
+    <!-- Customer Testimonials Section -->
+    <section class="testimonials">
+        <h2>What Our Customers Say</h2>
+        <div class="testimonial-item">
+            <p>"Great service and easy booking process!"</p>
+            <h4>-Ranveer Singh</h4>
+        </div>
+        <!-- Add more testimonials as needed -->
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-content">
+            <div class="company-info">
+                <p>&copy; 2024 TicketBooking. All rights reserved.</p>
+                <p>Contact us: info@ticketbooking.com</p>
+                <p>Follow us:</p>
+                <!-- Social media links -->
+                <a href="#">Facebook</a> | <a href="#">Twitter</a> | <a href="#">Instagram</a>
+            </div>
+            <div class="footer-links">
+                <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+    <!-- Hero Section -->
+
+   <script>
+    document.querySelector('.dropbtn').addEventListener('click', function() {
+  const dropdownContent = document.querySelector('.dropdown-content');
+  dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+});
+// pop -open for city select
+function updateCity(cityName) {
+  document.getElementById('selectedCity').innerText = cityName;
+
+  // Properly trigger Bootstrap's native closing functionality
+  var modalEl = document.getElementById('locationModal');
+  var modal = bootstrap.Modal.getInstance(modalEl); 
+  modal.hide(); // This properly hides the modal and allows other close buttons to work
+}
+
+// Detect location functionality (this can be expanded with geolocation APIs)
+document.getElementById('detectLocation').addEventListener('click', function() {
+  // Mock detection for demo purposes
+  updateCity('Detected City');
+});
+
+// Real-time city search filtering
+document.getElementById('citySearchInput').addEventListener('input', function() {
+  var filter = this.value.toLowerCase();
+  var cities = document.querySelectorAll('.popular-cities .city');
+  
+  cities.forEach(function(city) {
+    var cityName = city.getAttribute('data-city').toLowerCase();
+    if (cityName.includes(filter)) {
+      city.style.display = '';
+    } else {
+      city.style.display = 'none';
+    }
+  });
+});
+   </script>
+</body>
+</html>
